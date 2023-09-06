@@ -5,19 +5,16 @@ import (
 	"strings"
 )
 
-func toRomanian(num int) string {
-	val := []int{100, 90, 50, 40, 30, 20, 10, 5, 1}
-	sysm := []string{"C", "XC", "LXXX", "LXX", "LX", "L", "XL", "XXX", "XX", "X", "V", "I"}
-
+func _(num int) string {
+	val := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
+	syms := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
 	romanNumeral := ""
-	i := 0
 
-	for num > 0 {
+	for i := 0; num > 0; i++ {
 		for num >= val[i] {
-			romanNumeral += sysm[i]
+			romanNumeral += syms[i]
 			num -= val[i]
 		}
-		i++
 	}
 
 	return romanNumeral
@@ -27,14 +24,17 @@ func toRomanian(num int) string {
 func calculate(expression string) (int, error) {
 	parts := strings.Fields(expression)
 	if len(parts) != 3 {
-		return 0, fmt.Errorf("Вывод ошибки, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).") // Проверяет количество оперантов в строке если их больше 3х возвращает ошибку
+		return 0, fmt.Errorf("1Вывод ошибки, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).") // Проверяет количество оперантов в строке если их больше 3х возвращает ошибку
 	}
 
 	a, operator, b := parts[0], parts[1], parts[2] // Определяет где что находится в полученной строке
 	aInt := 0
 	bInt := 0
 
-	if operator != "+", "-", "/", "*" {
+	fmt.Println(aInt)
+	fmt.Println(bInt)
+
+	if operator != "+" && operator != "-" && operator != "*" && operator != "/" {
 		return 0, fmt.Errorf("Вывод ошибки, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
 	}
 
